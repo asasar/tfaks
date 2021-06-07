@@ -16,6 +16,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   name                = "aks-aks-demo-${random_string.random.result}-dev-neu"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  kubernetes_version  = "1.18.17"
   dns_prefix          = "demo-dev-neu"
   default_node_pool {
     name       = "default"
@@ -24,12 +25,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
   identity {
     type = "SystemAssigned"
-  }
-
-  addon_profile {
-    http_application_routing {
-      enabled = true
-    }
   }
 }
 
