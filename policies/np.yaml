@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  namespace: back
+  name: deny-from-other-namespaces
+spec:
+  podSelector:
+    matchLabels:
+  ingress:
+  - from:
+    - podSelector: {}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  namespace: middle
+  name: deny-from-cidr
+spec:
+  podSelector:
+    matchLabels:
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 10.2.0.0/16

@@ -13,7 +13,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "aks-aks-demo-dev-neu"
+  name                = "aks-aks-demo-${random_string.random.result}-dev-neu"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   dns_prefix          = "demo-dev-neu"
@@ -25,4 +25,18 @@ resource "azurerm_kubernetes_cluster" "aks" {
   identity {
     type = "SystemAssigned"
   }
+
+  addon_profile {
+    http_application_routing {
+      enabled = true
+    }
+  }
+}
+
+output "aksName" {
+  value = azurerm_kubernetes_cluster.aks.name
+}
+
+output "rgName" {
+  value = azurerm_resource_group.rg.name
 }
