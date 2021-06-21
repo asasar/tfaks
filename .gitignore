@@ -28,3 +28,7 @@ override.tf.json
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
 simpleaks/.terraform.lock.hcl
+atelierDemoAKS-02/terraform-aks/.terraform.lock.hcl
+atelierDemoAKS-02/terraform-aks/shared-agic
+atelierDemoAKS-02/terraform-aks/nginxcontroller
+atelierDemoAKS-02/terraform-aks/readme.md
